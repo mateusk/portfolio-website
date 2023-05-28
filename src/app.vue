@@ -2,6 +2,7 @@
 
 <template>
   <div></div>
+  <Background />
 </template>
 
 <style scoped></style>
