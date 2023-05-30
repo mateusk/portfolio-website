@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'EB Garamond Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('~~/src/assets/fonts/EBGaramond-Regular.woff2') format('woff2'),
+    url('~~/src/assets/fonts/EBGaramond-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond Italic';
+  font-style: italic;
+  font-weight: normal;
+  src: url('~~/src/assets/fonts/EBGaramond-Italic.woff2') format('woff2'),
+    url('~~/src/assets/fonts/EBGaramond-Italic.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HK Grotesk Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('~~/src/assets/fonts/HKGrotesk-Regular.woff2') format('woff2'),
+    url('~~/src/assets/fonts/HKGrotesk-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HK Grotesk Light';
+  font-style: normal;
+  font-weight: lighter;
+  src: url('~~/src/assets/fonts/HKGrotesk-Light.woff2') format('woff2'),
+    url('~~/src/assets/fonts/HKGrotesk-Light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HK Grotesk Semibold';
+  font-style: normal;
+  font-weight: bolder;
+  src: url('~~/src/assets/fonts/HKGrotesk-SemiBold.woff2') format('woff2'),
+    url('~~/src/assets/fonts/HKGrotesk-SemiBold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HK Grotesk Bold';
+  font-style: normal;
+  font-weight: bold;
+  src: url('~~/src/assets/fonts/HKGrotesk-Bold.woff2') format('woff2'),
+    url('~~/src/assets/fonts/HKGrotesk-Bold.woff') format('woff');
+  font-display: swap;
+}
