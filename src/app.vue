@@ -1,8 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div></div>
-  <Background />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <style scoped></style>

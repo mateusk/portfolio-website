@@ -6,7 +6,6 @@
   import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
   import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
   import { VignetteShader } from 'three/examples/jsm/shaders/VignetteShader.js'
-  import { ColorifyShader } from 'three/examples/jsm/shaders/ColorifyShader.js'
   import { GammaCorrectionShader } from 'three/examples/jsm/shaders/GammaCorrectionShader.js'
 
   import Stats from 'three/examples/jsm/libs/stats.module.js'
@@ -76,15 +75,15 @@
     //
 
     renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
     })
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(width.value, height.value)
 
-    stats.value = new Stats()
+    // stats.value = new Stats()
 
     bgContainer.value.appendChild(renderer.domElement)
-    bgContainer.value.appendChild(stats.value.dom)
+    // bgContainer.value.appendChild(stats.value.dom)
 
     //
 
@@ -97,9 +96,7 @@
     effectVignette.uniforms['darkness'].value = 1.2
 
     const effectBloom = new BloomPass(1)
-    const effectFilm = new FilmPass(0.35, 0.025, 648, 1)
-    const effectColorify1 = new ShaderPass(ColorifyShader)
-    const effectColorify2 = new ShaderPass(ColorifyShader)
+    const effectFilm = new FilmPass(0.7, 0, 0, 1)
 
     //
 
@@ -115,23 +112,19 @@
 
     //
 
+    // Ideally the number of passes should be reduced to a minimum
     composer.addPass(render)
     composer.addPass(gammaCorrection)
     composer.addPass(effectBloom)
-    composer.addPass(effectColorify1)
-    composer.addPass(effectColorify2)
     composer.addPass(effectFilm)
     composer.addPass(effectVignette)
   }
 
   function animate() {
     requestAnimationFrame(animate)
-    if (!stats.value) {
-      return
-    }
-    stats.value.begin()
+    // stats.value.begin()
     render()
-    stats.value.end()
+    // stats.value.end()
   }
 
   function render() {

@@ -1,0 +1,18 @@
+<script setup lang="ts"></script>
+
+<template>
+  <Header />
+  <slot />
+  <Background class="background" />
+</template>
+
+<style scoped>
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
