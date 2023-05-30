@@ -1,0 +1,51 @@
+@import url('@/assets/css/fonts.css');
+@import url('@/assets/css/variables.css');
+
+/* *------------------------- Typography rules -----------------------------* */
+
+/*  REM base size */
+
+html {
+  font-size: var(--font-size-regular);
+  /* stylelint-disable-next-line value-keyword-case */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'EB Garamond Regular', serif;
+  color: var(--text-color);
+  text-decoration: none;
+  /* stylelint-disable-next-line value-keyword-case */
+  text-rendering: geometricPrecision;
+}
+
+p {
+  margin: 0 0 1rem;
+  font-family: 'EB Garamond Regular', serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: var(--text-color);
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+a {
+  margin: 0;
+  font-family: 'EB Garamond Regular', serif;
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+/* ----------------------------- Media queries ------------------------------ */
+
+@media (width <= 768px) {
+  html {
+    font-size: var(--font-size-mobile);
+  }
+}

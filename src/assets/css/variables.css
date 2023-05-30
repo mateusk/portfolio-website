@@ -3,15 +3,26 @@
 
   /* Color pallette */
   
-  /* --light-beige: rgb(237 237 237); */
+  --light-beige: rgb(237 237 237);
+  --dark-coal: rgb(30 30 30);
 
   /* Element colors */
-  /* --bg-color: var(--dark-coal); */
+  --bg-color: var(--dark-coal);
+  --text-color: var(--light-beige);
+
+  /* *----------------------------- Typography -----------------------------* */
+
+  /* REM base size */
+
+  --font-size-regular: 16px;
+  --font-size-mobile: 18px;
 
   /* *------------------------------- Layout -------------------------------* */
   
   /* Other layout variables */
 
-  /* --max-width: 1920px; */
-  /* --padding: 35px; */
+  --max-width: 1920px;
+  --min-width: 320px;
+  --padding: 30px;
+  --header-height: 90px;
 }
