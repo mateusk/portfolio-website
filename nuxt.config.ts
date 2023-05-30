@@ -5,4 +5,5 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'firebase',
   },
+  modules: ['@nuxt/content', '@nuxt/image-edge', '@nuxtjs/device'],
 })
