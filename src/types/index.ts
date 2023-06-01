@@ -10,7 +10,7 @@ export interface ProjectPage extends ParsedContent {
   title: string
   description: string
   text: string[]
-  heroImage: Image[]
+  heroImage: Image
   mobileShowcase: {
     iPhone: Image[]
     iPad: Image[]
@@ -24,4 +24,12 @@ export interface Image {
   src: string
   srcset: string
   alt: string
+}
+
+export interface Video {
+  src: string
+}
+
+export interface Media {
+  media: Image | Video
 }
