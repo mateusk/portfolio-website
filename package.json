@@ -41,6 +41,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@vueuse/core": "^10.1.2",
+    "scrolly-video": "^0.0.15",
     "three": "^0.152.2"
   }
 }
