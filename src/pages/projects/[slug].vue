@@ -1,9 +1,12 @@
 <script setup lang="ts">
-  import type { ProjectPage, Image } from '@/types'
-  import { defaultImageSizes } from '~/utils'
+  import type { ProjectPage, Video } from '@/types'
+  import { getStaticAssetUrl } from '@/utils'
+  import { useWindowScroll } from '@vueuse/core'
 
   const { path } = useRoute()
   const slug = path.split('/').pop() as string
+
+  const heroMediaWrapper = ref<HTMLElement | null>(null)
 
   const {
     data: content,
@@ -20,14 +23,26 @@
           text: data.body.children
             .filter((child: any) => child.tag === 'p')
             .map((child: any) => child.children[0].value),
-          heroImage: {
-            src: data.heroImageSrc,
-            alt: data.heroImageAlt,
-          } as Image,
+          heroMedia: {
+            src: getStaticAssetUrl(data.heroMediaSrc),
+          } as Video,
+          projectUrl: data.projectUrl,
         } as ProjectPage
       },
     }
   )
+
+  const scroll = computed(() => {
+    if (!heroMediaWrapper.value || !heroMediaWrapper.value.parentElement) {
+      return 0
+    }
+    const { y: scrollY } = useWindowScroll()
+
+    const scrollPercent = scrollY.value / window.innerHeight
+    const scroll = scrollPercent < 0 ? 0 : scrollPercent > 1 ? 1 : scrollPercent
+
+    return scroll
+  })
 
   const pageError = computed(() => {
     if (error.value) {
@@ -38,26 +53,54 @@
     }
     return null
   })
+
+  /* -------------------------------- Methods ------------------------------- */
+
+  function openProject() {
+    window.open(content.value?.projectUrl, '_blank')
+  }
+
+  function interpolateScroll() {
+    if (!heroMediaWrapper.value) {
+      return
+    }
+  }
 </script>
 
 <template>
-  <main v-if="!pending && content">
+  <main
+    v-if="!pending && content"
+    ref="heroMediaWrapper"
+  >
     <section class="project-intro">
-      <h1>{{ content.title }}</h1>
-      <div class="text-container">
-        <p
-          v-for="(paragraph, index) in content.text"
-          :key="index"
-        >
-          {{ paragraph }}
-        </p>
+      <div class="content-wrapper">
+        <h1>{{ content.title }}</h1>
+        <div class="text-container">
+          <p
+            v-for="(paragraph, index) in content.text"
+            :key="index"
+          >
+            {{ paragraph }}
+          </p>
+          <LabelButton
+            v-if="content.projectUrl"
+            type="primary"
+            label="View project"
+            @click="openProject"
+          />
+        </div>
       </div>
     </section>
-    <ProjectHeroMedia
-      v-if="content.heroImage"
-      :media="content.heroImage"
-      class="project-hero-image"
-    />
+    <div class="project-hero-media-wrapper">
+      <ClientOnly>
+        <ProjectHeroMedia
+          v-if="content.heroMedia"
+          :media="content.heroMedia"
+          :scroll="scroll"
+          class="project-hero-media"
+        />
+      </ClientOnly>
+    </div>
   </main>
 </template>
 
@@ -75,8 +118,14 @@
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     height: calc(100vh - var(--header-height));
+  }
+
+  .project-intro .content-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     padding: 0 5%;
   }
 
@@ -89,11 +138,24 @@
     flex-basis: 50%;
   }
 
-  .project-hero-image {
+  .project-intro .text-container button {
+    margin-top: 2rem;
+  }
+
+  .project-hero-media-wrapper {
     position: absolute;
     top: calc(var(--header-height) * -1);
-    right: 0;
+    left: 0;
     z-index: -1;
-    height: 100%;
+    width: 100vw;
+    height: 300vh;
+  }
+
+  .project-hero-media {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
   }
 </style>

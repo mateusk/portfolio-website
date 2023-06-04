@@ -10,14 +10,14 @@ export interface ProjectPage extends ParsedContent {
   title: string
   description: string
   text: string[]
-  heroImage: Image
+  heroMedia: Image | Video
   mobileShowcase: {
     iPhone: Image[]
     iPad: Image[]
   }
   gallery: Image[]
   tech: string[]
-  link: string
+  projectUrl: string
 }
 
 export interface Image {
@@ -28,8 +28,5 @@ export interface Image {
 
 export interface Video {
   src: string
-}
-
-export interface Media {
-  media: Image | Video
+  alt: string
 }

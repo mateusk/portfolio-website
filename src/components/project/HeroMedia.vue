@@ -4,7 +4,10 @@
 
   const props = defineProps<{
     media: Image | Video
+    scroll: number
   }>()
+
+  const heroMedia = ref<HTMLDivElement | null>(null)
 
   const mediaType = computed(() => {
     if (!props.media || !props.media.src) {
@@ -15,33 +18,45 @@
       : 'image'
   })
 
-  const image = computed(() => {
-    if (mediaType.value === 'image') {
-      return props.media as Image
+  const heroMediaScale = computed(() => {
+    const percent = 1.2 - props.scroll
+    if (percent < 0.8) {
+      return 0.8
     }
-    return null
+    return percent
   })
+
+  const vignetteOpacity = computed(() => 1 - props.scroll * 2)
 </script>
 
 <template>
-  <div class="hero-media">
+  <div
+    class="hero-media-container"
+    ref="heroMedia"
+  >
     <div class="vignette"></div>
+    <ScrollyVideo
+      v-if="mediaType === 'video'"
+      :src="media.src"
+      :videoPercentage="props.scroll"
+      class="hero-media"
+      :trackScroll="false"
+    />
     <NuxtImg
-      v-if="mediaType === 'image' && image"
-      class="hero-image"
-      :src="image.src"
-      :alt="image.alt"
+      v-if="mediaType === 'image'"
+      :src="media.src"
       :sizes="defaultImageSizes"
-      preset="project"
+      :alt="media.alt || media.src"
+      class="hero-media"
     />
   </div>
 </template>
 
 <style scoped>
-  .hero-media {
-    position: relative;
+  .hero-media-container {
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
 
   .vignette {
@@ -49,19 +64,19 @@
     top: 0;
     left: 0;
     z-index: 1;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(
       circle,
       rgb(0 0 0 / 50%) 0%,
       rgb(0 0 0 / 75%) 100%
     );
+    opacity: v-bind(vignetteOpacity);
   }
 
-  .hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .hero-media {
     object-fit: cover;
+    width: 100%;
+    scale: v-bind(heroMediaScale);
   }
 </style>
