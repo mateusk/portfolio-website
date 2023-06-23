@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { ProjectPage, Video } from '@/types'
+  import type { ProjectPage, Image, Video } from '@/types'
   import { getStaticAssetUrl } from '@/utils'
   import { useWindowScroll } from '@vueuse/core'
 
@@ -18,14 +18,20 @@
     {
       transform: (data) => {
         return {
-          title: data.body.children.find((child: any) => child.tag === 'h1')
-            .children[0].value,
-          text: data.body.children
-            .filter((child: any) => child.tag === 'p')
-            .map((child: any) => child.children[0].value),
+          title: data.title,
+          text: data.text,
           heroMedia: {
-            src: getStaticAssetUrl(data.heroMediaSrc),
+            src: getStaticAssetUrl(data.heroMedia.src),
           } as Video,
+          mobileShowcase: data.mobileShowcase.map((showcaseEntry: any) => ({
+            type: showcaseEntry.type,
+            content: {
+              type: showcaseEntry.content.type,
+              src: showcaseEntry.content.src,
+              alt: showcaseEntry?.content.alt,
+              srcset: showcaseEntry?.content.srcset,
+            } as Image | Video,
+          })),
           projectUrl: data.projectUrl,
         } as ProjectPage
       },
@@ -58,12 +64,6 @@
 
   function openProject() {
     window.open(content.value?.projectUrl, '_blank')
-  }
-
-  function interpolateScroll() {
-    if (!heroMediaWrapper.value) {
-      return
-    }
   }
 </script>
 
@@ -101,6 +101,12 @@
         />
       </ClientOnly>
     </div>
+    <ProjectDeviceMockup
+      v-for="(showcaseEntry, index) in content.mobileShowcase"
+      :key="index"
+      :type="showcaseEntry.type"
+      :content="showcaseEntry.content"
+    />
   </main>
 </template>
 

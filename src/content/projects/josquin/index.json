@@ -1,0 +1,22 @@
+{
+  "title": "Celebrating Josquin des Prez with a unique digital experience",
+  "text": [
+    "From July 13-16, 2022, the Pierre Boulez Saal Concert Hall in Berlin presented eight concerts, in which the Tallis Scholars Musical Ensemble performed 18 surviving masses of Renaissance composer Josquin des Prez (c. 1450-1521) in the first-ever cyclical presentation of these works. To promote the concerts, Neeeu designed and I developed a digital universe where audiences can explore the works of Josquin like never before."
+  ],
+  "projectUrl": "https://josquin.boulezsaal.de/en",
+  "tech": ["Javascript", "Vue.js", "Nuxt"],
+  "heroMedia": {
+    "type": "video",
+    "src": "videos/projects/josquin/josquin.mp4"
+  },
+  "mobileShowcase": [
+    {
+      "type": "ipad",
+      "content": {
+        "type": "image",
+        "src": "/projects/josquin/hero.jpg",
+        "alt": "Josquin des Prez on iPad"
+      }
+    }
+  ]
+}
