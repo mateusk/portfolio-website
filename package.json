@@ -13,36 +13,37 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.6.0",
-    "@nuxt/image-edge": "^1.0.0-28089316.69d3bcc",
+    "@nuxt/content": "^2.7.0",
+    "@nuxt/devtools": "^0.6.1",
+    "@nuxt/image-edge": "^1.0.0-rc.1-28119537.bfe30ab",
     "@nuxtjs/device": "^3.1.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@types/node": "^18",
+    "@types/node": "^20",
     "@types/three": "^0.152.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
-    "eslint": "^8.41.0",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.14.0",
+    "eslint-plugin-vue": "^9.15.0",
     "eslint-plugin-vue-scoped-css": "^2.4.0",
     "eslint-plugin-vuejs-accessibility": "^2.1.0",
-    "firebase-admin": "^11.8.0",
-    "firebase-functions": "^4.4.0",
+    "firebase-admin": "^11.9.0",
+    "firebase-functions": "^4.4.1",
     "firebase-functions-test": "^3.1.0",
-    "nuxt": "^3.5.1",
+    "nuxt": "^3.5.3",
     "prettier": "^2.8.8",
-    "stylelint": "^15.6.2",
+    "stylelint": "^15.8.0",
     "stylelint-color-format": "^1.1.0",
-    "stylelint-config-recess-order": "^4.0.0",
+    "stylelint-config-recess-order": "^4.2.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^33.0.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.3"
   },
   "dependencies": {
-    "@vueuse/core": "^10.1.2",
+    "@vueuse/core": "^10.2.0",
     "scrolly-video": "^0.0.15",
-    "three": "^0.152.2"
+    "three": "^0.153.0"
   }
 }

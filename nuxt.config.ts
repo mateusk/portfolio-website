@@ -3,9 +3,11 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   css: ['~~/src/assets/css/main.css'],
   modules: ['@nuxt/content', '@nuxt/image-edge', '@nuxtjs/device'],
+
   nitro: {
     preset: 'firebase',
   },
+
   image: {
     dir: 'assets/images',
     screens: {
@@ -26,5 +28,9 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+
+  devtools: {
+    enabled: true,
   },
 })
