@@ -1,5 +1,7 @@
 import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
+/* ----------------------------- Page data types ---------------------------- */
+
 export interface IndexPage extends ParsedContent {
   title: string
   description: string
@@ -11,22 +13,47 @@ export interface ProjectPage extends ParsedContent {
   description: string
   text: string[]
   heroMedia: Image | Video
-  mobileShowcase: {
-    iPhone: Image[]
-    iPad: Image[]
-  }
+  mobileShowcase: DeviceMockup[]
   gallery: Image[]
   tech: string[]
   projectUrl: string
 }
 
-export interface Image {
+/* ---------------------------- Media data types ---------------------------- */
+
+interface Media {
+  type: 'image' | 'video'
   src: string
-  srcset: string
-  alt: string
+  alt?: string
+  srcset?: string
+  autoplay?: boolean
+  loop?: boolean
+  muted?: boolean
+}
+
+export interface Image extends Media {
+  type: 'image'
+  src: string
+  alt?: string
+  srcset?: string
+  autoplay?: never
+  loop?: never
+  muted?: never
 }
 
 export interface Video {
+  type: 'video'
   src: string
-  alt: string
+  alt?: never
+  srcset?: never
+  autoplay?: boolean
+  loop?: boolean
+  muted?: boolean
+}
+
+/* -------------------------- Component data types -------------------------- */
+
+export interface DeviceMockup {
+  type: 'ipad' | 'iphone' | 'macbook'
+  content: Image | Video
 }
