@@ -17,6 +17,14 @@
         "src": "/projects/josquin/hero.jpg",
         "alt": "Josquin des Prez on iPad"
       }
+    },
+    {
+      "type": "iphone",
+      "content": {
+        "type": "image",
+        "src": "/projects/josquin/josquin-phone.jpg",
+        "alt": "Josquin des Prez on iPad"
+      }
     }
   ]
 }

@@ -101,12 +101,19 @@
         />
       </ClientOnly>
     </div>
-    <ProjectDeviceMockup
-      v-for="(showcaseEntry, index) in content.mobileShowcase"
-      :key="index"
-      :type="showcaseEntry.type"
-      :content="showcaseEntry.content"
-    />
+    <div class="device-mockups-container">
+      <ProjectDeviceMockup
+        v-for="(showcaseEntry, index) in content.mobileShowcase"
+        class="device-mockup"
+        :class="{
+          ipad: showcaseEntry.type === 'ipad',
+          iphone: showcaseEntry.type === 'iphone',
+        }"
+        :key="index"
+        :type="showcaseEntry.type"
+        :content="showcaseEntry.content"
+      />
+    </div>
   </main>
 </template>
 
@@ -117,11 +124,9 @@
 
   section {
     box-sizing: border-box;
-    width: calc(100% - 2 * var(--padding));
   }
 
   .project-intro {
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,5 +168,31 @@
     left: 0;
     width: 100%;
     height: 100vh;
+  }
+
+  .device-mockups-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 66% 33%;
+    width: 100%;
+    height: 200vh;
+    margin-top: 200vh;
+  }
+
+  .device-mockup {
+    height: 80vh;
+  }
+
+  .device-mockup.ipad {
+    position: sticky;
+    top: 10vh;
+    align-self: start;
+    translate: -20% 0;
+  }
+
+  .device-mockup.iphone {
+    align-self: end;
+    justify-self: center;
+    margin-bottom: 10vh;
   }
 </style>
