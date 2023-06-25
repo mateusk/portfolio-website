@@ -1,5 +1,12 @@
 import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
+/* --------------------------- General data types --------------------------- */
+
+interface Link {
+  text: string
+  url: string
+}
+
 /* ----------------------------- Page data types ---------------------------- */
 
 export interface IndexPage extends ParsedContent {
@@ -17,9 +24,21 @@ export interface ProjectPage extends ParsedContent {
     layout: string
     devices: DeviceMockup[]
   }
+  fullscreenImage: Image
   gallery: Image[]
   tech: string[]
   projectUrl: string
+  credits: {
+    client: Link
+    developedAt: Link
+    year: string
+    roles: [
+      {
+        role: string
+        names: string[]
+      }
+    ]
+  }
 }
 
 /* ---------------------------- Media data types ---------------------------- */

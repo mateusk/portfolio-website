@@ -29,5 +29,30 @@
         }
       }
     ]
+  },
+  "fullscreenImage": {
+    "src": "/projects/josquin/hero.webp",
+    "alt": "Josquin des Prez website on a Macbook screen"
+  },
+  "credits": {
+    "client": {
+      "text": "Pierre Boulez Saal",
+      "link": "https://boulezsaal.de"
+    },
+    "developedAt": {
+      "text": "Neeeu Spaces GmbH",
+      "link": "https://neeeu.io"
+    },
+    "year": "2022",
+    "roles": [
+      {
+        "role": "Design",
+        "names": ["Emma Bouleau", "Javier Soto Morras"]
+      },
+      {
+        "role": "Development",
+        "names": ["Mateus Knelsen"]
+      }
+    ]
   }
 }

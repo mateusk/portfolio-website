@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { ProjectPage, Image, Video } from '@/types'
-  import { getStaticAssetUrl } from '@/utils'
+  import { getStaticAssetUrl, defaultImageSizes } from '@/utils'
   import { useWindowScroll } from '@vueuse/core'
 
   const { path } = useRoute()
@@ -35,7 +35,12 @@
               } as Image | Video,
             })),
           },
+          fullscreenImage: {
+            src: data?.fullscreenImage.src,
+            alt: data?.fullscreenImage.alt,
+          } as Image,
           projectUrl: data.projectUrl,
+          credits: data.credits,
         } as ProjectPage
       },
     }
@@ -104,7 +109,7 @@
         />
       </ClientOnly>
     </div>
-    <div
+    <section
       class="device-mockups-container"
       :class="content.mobileShowcase.layout"
     >
@@ -119,7 +124,60 @@
         :type="showcaseEntry.type"
         :content="showcaseEntry.content"
       />
-    </div>
+    </section>
+    <section
+      class="fullscreen-image-container"
+      v-if="content.fullscreenImage"
+    >
+      <NuxtImg
+        :src="content.fullscreenImage.src"
+        :alt="content.fullscreenImage.alt"
+        :sizes="defaultImageSizes"
+      />
+    </section>
+    <section class="credits">
+      <div
+        class="client"
+        v-if="content.credits.client"
+      >
+        <h2>Client</h2>
+        <a
+          :href="content.credits.client.url"
+          target="_blank"
+        >
+          {{ content.credits.client.text }}
+        </a>
+      </div>
+      <div
+        class="developed-at"
+        v-if="content.credits.developedAt"
+      >
+        <h2>Developed at</h2>
+        <a
+          :href="content.credits.developedAt.url"
+          target="_blank"
+        >
+          {{ content.credits.developedAt.text }}
+        </a>
+      </div>
+      <div class="year">
+        <h2>Year</h2>
+        <p>{{ content.credits.year }}</p>
+      </div>
+      <div class="roles">
+        <div v-for="roleDescription in content.credits.roles">
+          <h2>{{ roleDescription.role }}</h2>
+          <p
+            v-for="(name, nameIndex) in roleDescription.names"
+            :key="nameIndex"
+          >
+            {{
+              name + (nameIndex < roleDescription.names.length - 1 ? ', ' : '')
+            }}
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -196,6 +254,7 @@
     position: sticky;
     top: 10vh;
     align-self: start;
+    margin-bottom: 10vh;
     translate: -20% 0;
   }
 
@@ -203,5 +262,34 @@
     align-self: end;
     justify-self: center;
     margin-bottom: 10vh;
+  }
+
+  .fullscreen-image-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    translate: calc(-1 * var(--padding)) 0;
+  }
+
+  .fullscreen-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .credits {
+    height: 100vh;
+  }
+
+  .credits h2 {
+    font-family: 'HK Grotesk Semibold', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .credits .roles p {
+    display: inline;
+    margin: 0;
   }
 </style>
