@@ -9,22 +9,25 @@
     "type": "video",
     "src": "videos/projects/josquin/josquin.mp4"
   },
-  "mobileShowcase": [
-    {
-      "type": "ipad",
-      "content": {
-        "type": "image",
-        "src": "/projects/josquin/hero.jpg",
-        "alt": "Josquin des Prez on iPad"
+  "mobileShowcase": {
+    "layout": "side-by-side",
+    "devices": [
+      {
+        "type": "ipad",
+        "content": {
+          "type": "image",
+          "src": "/projects/josquin/hero.jpg",
+          "alt": "Josquin des Prez on iPad"
+        }
+      },
+      {
+        "type": "iphone",
+        "content": {
+          "type": "image",
+          "src": "/projects/josquin/josquin-phone.jpg",
+          "alt": "Josquin des Prez on iPad"
+        }
       }
-    },
-    {
-      "type": "iphone",
-      "content": {
-        "type": "image",
-        "src": "/projects/josquin/josquin-phone.jpg",
-        "alt": "Josquin des Prez on iPad"
-      }
-    }
-  ]
+    ]
+  }
 }

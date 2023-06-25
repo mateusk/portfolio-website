@@ -23,15 +23,18 @@
           heroMedia: {
             src: getStaticAssetUrl(data.heroMedia.src),
           } as Video,
-          mobileShowcase: data.mobileShowcase.map((showcaseEntry: any) => ({
-            type: showcaseEntry.type,
-            content: {
-              type: showcaseEntry.content.type,
-              src: showcaseEntry.content.src,
-              alt: showcaseEntry?.content.alt,
-              srcset: showcaseEntry?.content.srcset,
-            } as Image | Video,
-          })),
+          mobileShowcase: {
+            layout: data.mobileShowcase.layout,
+            devices: data.mobileShowcase.devices.map((showcaseEntry: any) => ({
+              type: showcaseEntry.type,
+              content: {
+                type: showcaseEntry.content.type,
+                src: showcaseEntry.content.src,
+                alt: showcaseEntry?.content.alt,
+                srcset: showcaseEntry?.content.srcset,
+              } as Image | Video,
+            })),
+          },
           projectUrl: data.projectUrl,
         } as ProjectPage
       },
@@ -101,9 +104,12 @@
         />
       </ClientOnly>
     </div>
-    <div class="device-mockups-container">
+    <div
+      class="device-mockups-container"
+      :class="content.mobileShowcase.layout"
+    >
       <ProjectDeviceMockup
-        v-for="(showcaseEntry, index) in content.mobileShowcase"
+        v-for="(showcaseEntry, index) in content.mobileShowcase.devices"
         class="device-mockup"
         :class="{
           ipad: showcaseEntry.type === 'ipad',
@@ -172,25 +178,28 @@
 
   .device-mockups-container {
     position: relative;
+    width: 100%;
+  }
+
+  .device-mockups-container.side-by-side {
     display: grid;
     grid-template-columns: 66% 33%;
-    width: 100%;
     height: 200vh;
     margin-top: 200vh;
   }
 
-  .device-mockup {
+  .device-mockups-container.side-by-side .device-mockup {
     height: 80vh;
   }
 
-  .device-mockup.ipad {
+  .device-mockups-container.side-by-side .device-mockup.ipad {
     position: sticky;
     top: 10vh;
     align-self: start;
     translate: -20% 0;
   }
 
-  .device-mockup.iphone {
+  .device-mockups-container.side-by-side .device-mockup.iphone {
     align-self: end;
     justify-self: center;
     margin-bottom: 10vh;

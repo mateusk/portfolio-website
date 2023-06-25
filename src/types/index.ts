@@ -13,7 +13,10 @@ export interface ProjectPage extends ParsedContent {
   description: string
   text: string[]
   heroMedia: Image | Video
-  mobileShowcase: DeviceMockup[]
+  mobileShowcase: {
+    layout: string
+    devices: DeviceMockup[]
+  }
   gallery: Image[]
   tech: string[]
   projectUrl: string
