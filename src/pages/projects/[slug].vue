@@ -135,49 +135,10 @@
         :sizes="defaultImageSizes"
       />
     </section>
-    <section class="credits">
-      <div
-        class="client"
-        v-if="content.credits.client"
-      >
-        <h2>Client</h2>
-        <a
-          :href="content.credits.client.url"
-          target="_blank"
-        >
-          {{ content.credits.client.text }}
-        </a>
-      </div>
-      <div
-        class="developed-at"
-        v-if="content.credits.developedAt"
-      >
-        <h2>Developed at</h2>
-        <a
-          :href="content.credits.developedAt.url"
-          target="_blank"
-        >
-          {{ content.credits.developedAt.text }}
-        </a>
-      </div>
-      <div class="year">
-        <h2>Year</h2>
-        <p>{{ content.credits.year }}</p>
-      </div>
-      <div class="roles">
-        <div v-for="roleDescription in content.credits.roles">
-          <h2>{{ roleDescription.role }}</h2>
-          <p
-            v-for="(name, nameIndex) in roleDescription.names"
-            :key="nameIndex"
-          >
-            {{
-              name + (nameIndex < roleDescription.names.length - 1 ? ', ' : '')
-            }}
-          </p>
-        </div>
-      </div>
-    </section>
+    <ProjectCredits
+      v-if="content.credits"
+      :credits="content.credits"
+    />
   </main>
 </template>
 
@@ -275,21 +236,5 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .credits {
-    height: 100vh;
-  }
-
-  .credits h2 {
-    font-family: 'HK Grotesk Semibold', sans-serif;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-  }
-
-  .credits .roles p {
-    display: inline;
-    margin: 0;
   }
 </style>
